@@ -17,7 +17,7 @@ function preload() {
     
 }
 
-var sprite;
+var regulateur;
 
 function create() {
 
@@ -30,13 +30,13 @@ function create() {
     var bounds = new Phaser.Rectangle(100, 100, 400, 400);
     
     
-    sprite = game.add.graphics(200, 200);
-    sprite.beginFill(0x000, 1);
-    sprite.lineStyle(2, 0x0000FF, 1);
-    sprite.drawRect(0, 0, 100, 10);
-    sprite.endFill();
-    sprite.pivot.x = 50;
-    sprite.pivot.y = 5;
+    regulateur = game.add.graphics(200, 200);
+    regulateur.beginFill(0x000, 1);
+    regulateur.lineStyle(2, 0x0000FF, 1);
+    regulateur.drawRect(0, 0, 100, 10);
+    regulateur.endFill();
+    regulateur.pivot.x = 50;
+    regulateur.pivot.y = 5;
 
 }
 
@@ -44,24 +44,24 @@ function update() {
   
     if (game.input.keyboard.isDown(Phaser.Keyboard.LEFT))
     {
-        sprite.x -= 4;
+        regulateur.x -= 4;
     }
     else if (game.input.keyboard.isDown(Phaser.Keyboard.RIGHT))
     {
-        sprite.x += 4;
+        regulateur.x += 4;
     }
 
     if (game.input.keyboard.isDown(Phaser.Keyboard.UP))
     {
-        sprite.y -= 4;
+        regulateur.y -= 4;
     }
     else if (game.input.keyboard.isDown(Phaser.Keyboard.DOWN))
     {
-        sprite.y += 4;
+        regulateur.y += 4;
     }
 
-    //sprite.x += 4;
-    sprite.angle += 1;
+    //regulateur.x += 4;
+    regulateur.angle += 1;
 }
 
 function render () {
