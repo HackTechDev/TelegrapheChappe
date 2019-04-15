@@ -50,24 +50,24 @@ function create() {
     regulateur.angle = 0;
 
 
-    indicateur_gauche = game.add.graphics(0, 0);
+    indicateur_gauche = game.add.graphics(0, 8);
     indicateur_gauche.beginFill(0x000, 1);
     indicateur_gauche.lineStyle(2, 0xFF0000, 1);
     indicateur_gauche.drawRect(0, 0, 100, 16); 
     indicateur_gauche.endFill();
     indicateur_gauche.pivot.x = 0;
-    indicateur_gauche.pivot.y = 0;
-    indicateur_gauche.angle = 10;
+    indicateur_gauche.pivot.y = 8;
+    indicateur_gauche.angle = 0;
 
 
-    indicateur_droit = game.add.graphics(220, 0);
+    indicateur_droit = game.add.graphics(230, 8);
     indicateur_droit.beginFill(0x000, 1);
     indicateur_droit.lineStyle(2, 0xFFFF00, 1);
     indicateur_droit.drawRect(0, 0, 100, 16); 
     indicateur_droit.endFill();
     indicateur_droit.pivot.x = 0;
-    indicateur_droit.pivot.y = 0;
-    indicateur_droit.angle = 30;
+    indicateur_droit.pivot.y = 8;
+    indicateur_droit.angle = 0;
 
 
     regulateur.addChild(indicateur_gauche);
