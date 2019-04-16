@@ -33,7 +33,14 @@ var indicateur_droit_angle = 0;
 var indicateur_droit_direction = 0;
 var indicateur_droit_position = 0;
 
+var regulateuraButton;
+var regulateurzButton;
 
+var indicateurGaucheqButton;
+var indicateurGauchesButton;
+
+var indicateurDroitwButton;
+var indicateurDroitxButtin;
 
 function create() {
 
@@ -100,7 +107,56 @@ function create() {
     indicateurDroitPositionText = this.add.text(16, 80, 'indicateurDroitPosition: 0', { fontSize: '16px', fill: '#000' });
     indicateurDroitAngleText = this.add.text(16, 96, 'indicateurDroitAngle: 0', { fontSize: '16px', fill: '#000' });
 
+    regulateuraButton = this.add.button(16, 120, 'buttona', regulateuraOnClick, this, 2, 1, 0);
+    regulateurzButton = this.add.button(60, 120, 'buttonz', regulateurzOnClick, this, 2, 1, 0);
+
+    indicateurGaucheqButton = this.add.button(16, 170, 'buttonq', indicateurGaucheqOnClick, this, 2, 1, 0);
+    indicateurGauchesButton = this.add.button(60, 170, 'buttons', indicateurGauchesOnClick, this, 2, 1, 0);
+
+    indicateurDroitwButton = this.add.button(16, 220, 'buttonw', indicateurDroitwOnClick, this, 2, 1, 0);
+    indicateurDroitxButton = this.add.button(60, 220, 'buttonx', indicateurDroitxOnClick, this, 2, 1, 0);
+
+
 }
+
+function regulateuraOnClick() {
+     console.log('regulateurA click');
+     regulateur_position += 45;
+     regulateur_direction = 1;
+}
+
+function regulateurzOnClick() {
+     console.log('regulateurZ click');
+     regulateur_position -= 45;
+     regulateur_direction = -1;
+}
+
+
+function indicateurGaucheqOnClick() {
+     console.log('indicateur gauche Q click');
+        indicateur_gauche_position += 45;
+        indicateur_gauche_direction = 1;
+}
+
+function indicateurGauchesOnClick() {
+     console.log('indicateur gauche S click');
+        indicateur_gauche_position -= 45;
+        indicateur_gauche_direction = -1;
+}
+
+
+function indicateurDroitwOnClick() {
+     console.log('indicateur droit W click');
+        indicateur_droit_position += 45;
+        indicateur_droit_direction = 1;
+}
+
+function indicateurDroitxOnClick() {
+     console.log('indicateur droit X click');
+        indicateur_droit_position -= 45;
+        indicateur_droit_direction = -1;
+}
+
 
 function update() {
     regulateurPositionText.setText('regulateurPosition: ' + regulateur_position);
@@ -144,6 +200,7 @@ function update() {
         indicateur_gauche_direction = -1;
 
     }
+
 
     if (game.input.keyboard.isDown(Phaser.Keyboard.W)) {
         indicateur_droit_position += 45;
