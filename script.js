@@ -18,6 +18,22 @@ function preload() {
 var regulateur;
 var regulateur_angle = 0;
 var regulateur_direction = 0;
+var regulateur_position = 0;
+
+
+
+var indicateur_gauche;
+var indicateur_gauche_angle = 0;
+var indicateur_gauche_direction = 0;
+var indicateur_gauche_position = 0;
+
+
+var indicateur_droit;
+var indicateur_droit_angle = 0;
+var indicateur_droit_direction = 0;
+var indicateur_droit_position = 0;
+
+
 
 function create() {
 
@@ -73,59 +89,94 @@ function create() {
     regulateur.addChild(indicateur_gauche);
 
     regulateur.addChild(indicateur_droit);
+
+
+    regulateurPositionText = this.add.text(16, 16, 'regulateurPosition: 0', { fontSize: '16px', fill: '#000' });
+    regulateurAngleText = this.add.text(16, 32, 'regulateurAngle: 0', { fontSize: '16px', fill: '#000' });
+
+    indicateurGauchePositionText = this.add.text(16, 48, 'indicateurGauchePosition: 0', { fontSize: '16px', fill: '#000' });
+    indicateurGaucheAngleText = this.add.text(16, 64, 'indicateurGaucheAngle: 0', { fontSize: '16px', fill: '#000' });
+
+    indicateurDroitPositionText = this.add.text(16, 80, 'indicateurDroitPosition: 0', { fontSize: '16px', fill: '#000' });
+    indicateurDroitAngleText = this.add.text(16, 96, 'indicateurDroitAngle: 0', { fontSize: '16px', fill: '#000' });
+
 }
 
 function update() {
+    regulateurPositionText.setText('regulateurPosition: ' + regulateur_position);
+    regulateurAngleText.setText('regulateurAngle: ' + regulateur.angle);
+
+
+    indicateurGauchePositionText.setText('indicateurGauchePosition: ' + indicateur_gauche_position);
+    indicateurGaucheAngleText.setText('indicateurGaucheAngle: ' + indicateur_gauche.angle);
+
+
+    indicateurDroitPositionText.setText('indicateurDroitPosition: ' + indicateur_droit_position);
+    indicateurDroitAngleText.setText('indicateurDroitAngle: ' + indicateur_droit.angle);
+
+
+
+    if (game.input.keyboard.isDown(Phaser.Keyboard.O)) {
+        regulateur_position = 0;
+    }
+
 
     if (game.input.keyboard.isDown(Phaser.Keyboard.A)) {
-        regulateur_angle = -90;
-        regulateur_direction = -1;
+        regulateur_position += 45;
+        regulateur_direction = 1;
     }
 
+ 
     if (game.input.keyboard.isDown(Phaser.Keyboard.Z)) {
-        regulateur_angle = -45;
+        regulateur_position -= 45;
         regulateur_direction = -1;
-
     }
- 
-    if (game.input.keyboard.isDown(Phaser.Keyboard.E)) {
-        regulateur_angle = 0;
-        regulateur_direction = -1;
 
-    }
- 
 
-    if (game.input.keyboard.isDown(Phaser.Keyboard.R)) {
-        regulateur_angle = 45;
-        regulateur_direction = 1;
-
-    }
- 
-    if (game.input.keyboard.isDown(Phaser.Keyboard.T)) {
-        regulateur_angle = 90;
-        regulateur_direction = 1;
-
-    }
- 
     if (game.input.keyboard.isDown(Phaser.Keyboard.Q)) {
-        indicateur_gauche.angle += 45;
+        indicateur_gauche_position += 45;
+        indicateur_gauche_direction = 1;
+
     }
 
     if (game.input.keyboard.isDown(Phaser.Keyboard.S)) {
-        indicateur_gauche.angle -= 45;
+        indicateur_gauche_position -= 45;
+        indicateur_gauche_direction = -1;
+
     }
 
     if (game.input.keyboard.isDown(Phaser.Keyboard.W)) {
-        indicateur_droit.angle += 45;
+        indicateur_droit_position += 45;
+        indicateur_droit_direction = 1;
+
     }
 
     if (game.input.keyboard.isDown(Phaser.Keyboard.X)) {
-        indicateur_droit.angle -= 45;
+        indicateur_droit_position -= 45;
+        indicateur_droit_direction = -1;
+
     }
 
 
-    if (regulateur.angle != regulateur_angle)
-        regulateur.angle += regulateur_direction;
+
+
+    if (regulateur.angle != regulateur_position) {
+            regulateur.angle += regulateur_direction;
+    }
+
+
+
+    if (indicateur_gauche.angle != indicateur_gauche_position) {
+            indicateur_gauche.angle += indicateur_gauche_direction;
+    }
+
+
+    if (indicateur_droit.angle != indicateur_droit_position) {
+            indicateur_droit.angle += indicateur_droit_direction;
+    }
+
+
+
 
 }
 
