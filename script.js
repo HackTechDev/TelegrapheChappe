@@ -121,14 +121,18 @@ function create() {
 
 function regulateuraOnClick() {
      console.log('regulateurA click');
-     regulateur_position += 45;
-     regulateur_direction = 1;
+     if(regulateur_position < 90) {
+         regulateur_position += 45;
+         regulateur_direction = 1;
+     }
 }
 
 function regulateurzOnClick() {
      console.log('regulateurZ click');
-     regulateur_position -= 45;
-     regulateur_direction = -1;
+    if(regulateur_position > -90) {
+         regulateur_position -= 45;
+         regulateur_direction = -1;
+    }
 }
 
 
@@ -171,22 +175,27 @@ function update() {
     indicateurDroitAngleText.setText('indicateurDroitAngle: ' + indicateur_droit.angle);
 
 
-
+    
     if (game.input.keyboard.isDown(Phaser.Keyboard.O)) {
         regulateur_position = 0;
     }
 
 
-    if (game.input.keyboard.isDown(Phaser.Keyboard.A)) {
-        regulateur_position += 45;
-        regulateur_direction = 1;
-    }
 
- 
-    if (game.input.keyboard.isDown(Phaser.Keyboard.Z)) {
-        regulateur_position -= 45;
-        regulateur_direction = -1;
-    }
+        if (game.input.keyboard.isDown(Phaser.Keyboard.A)) {
+            if(regulateur_position < 90) {
+                regulateur_position += 45;
+                regulateur_direction = 1;
+            }
+        }
+
+        if (game.input.keyboard.isDown(Phaser.Keyboard.Z)) {
+            if(regulateur_position > -90) {
+            regulateur_position -= 45;
+            regulateur_direction = -1;
+            }
+        }
+
 
 
     if (game.input.keyboard.isDown(Phaser.Keyboard.Q)) {
@@ -215,18 +224,15 @@ function update() {
     }
 
 
-
-
-    if (regulateur.angle != regulateur_position) {
+    if (regulateur_position <= 90 && regulateur_position >= -90) {
+        if (regulateur.angle != regulateur_position) {
             regulateur.angle += regulateur_direction;
+         }
     }
-
-
 
     if (indicateur_gauche.angle != indicateur_gauche_position) {
-            indicateur_gauche.angle += indicateur_gauche_direction;
+                indicateur_gauche.angle += indicateur_gauche_direction;
     }
-
 
     if (indicateur_droit.angle != indicateur_droit_position) {
             indicateur_droit.angle += indicateur_droit_direction;
