@@ -1,18 +1,18 @@
 var game = new Phaser.Game(1024, 768, 
-                           Phaser.AUTO, 
-                           null, 
-                           {
-                             preload: preload, 
-                             create: create, 
-                             update: update,
-                             render: render
-                           });
+        Phaser.AUTO, 
+        null, 
+        {
+preload: preload, 
+create: create, 
+update: update,
+render: render
+});
 
 var phaser;
 
 function preload() {
     game.stage.backgroundColor = '#eee';
-    
+
 }
 
 var regulateur;
@@ -45,13 +45,13 @@ var indicateurDroitxButtin;
 function create() {
 
     game.time.desiredFps = 30;
-    
+
     game.physics.startSystem(Phaser.Physics.ARCADE);
 
     game.stage.backgroundColor = '#0072bc';
-    
+
     var bounds = new Phaser.Rectangle(0, 0, 1024, 768);
-    
+
 
     mat = game.add.graphics(512, 384);
     mat.beginFill(0x000, 1);
@@ -62,7 +62,7 @@ function create() {
     mat.pivot.y = 0;
     mat.angle = 0;
 
-    
+
     regulateur = game.add.graphics(512, 384);
     regulateur.beginFill(0x000, 1);
     regulateur.lineStyle(2, 0x0000FF, 1);
@@ -120,45 +120,45 @@ function create() {
 }
 
 function regulateuraOnClick() {
-     console.log('regulateurA click');
-     if(regulateur_position < 90) {
-         regulateur_position += 45;
-         regulateur_direction = 1;
-     }
+    console.log('regulateurA click');
+    if(regulateur_position < 90) {
+        regulateur_position += 45;
+        regulateur_direction = 1;
+    }
 }
 
 function regulateurzOnClick() {
-     console.log('regulateurZ click');
+    console.log('regulateurZ click');
     if(regulateur_position > -90) {
-         regulateur_position -= 45;
-         regulateur_direction = -1;
+        regulateur_position -= 45;
+        regulateur_direction = -1;
     }
 }
 
 
 function indicateurGaucheqOnClick() {
-     console.log('indicateur gauche Q click');
-        indicateur_gauche_position += 45;
-        indicateur_gauche_direction = 1;
+    console.log('indicateur gauche Q click');
+    indicateur_gauche_position += 45;
+    indicateur_gauche_direction = 1;
 }
 
 function indicateurGauchesOnClick() {
-     console.log('indicateur gauche S click');
-        indicateur_gauche_position -= 45;
-        indicateur_gauche_direction = -1;
+    console.log('indicateur gauche S click');
+    indicateur_gauche_position -= 45;
+    indicateur_gauche_direction = -1;
 }
 
 
 function indicateurDroitwOnClick() {
-     console.log('indicateur droit W click');
-        indicateur_droit_position += 45;
-        indicateur_droit_direction = 1;
+    console.log('indicateur droit W click');
+    indicateur_droit_position += 45;
+    indicateur_droit_direction = 1;
 }
 
 function indicateurDroitxOnClick() {
-     console.log('indicateur droit X click');
-        indicateur_droit_position -= 45;
-        indicateur_droit_direction = -1;
+    console.log('indicateur droit X click');
+    indicateur_droit_position -= 45;
+    indicateur_droit_direction = -1;
 }
 
 
@@ -175,26 +175,25 @@ function update() {
     indicateurDroitAngleText.setText('indicateurDroitAngle: ' + indicateur_droit.angle);
 
 
-    
     if (game.input.keyboard.isDown(Phaser.Keyboard.O)) {
         regulateur_position = 0;
     }
 
 
 
-        if (game.input.keyboard.isDown(Phaser.Keyboard.A)) {
-            if(regulateur_position < 90) {
-                regulateur_position += 45;
-                regulateur_direction = 1;
-            }
+    if (game.input.keyboard.isDown(Phaser.Keyboard.A)) {
+        if(regulateur_position < 90) {
+            regulateur_position += 45;
+            regulateur_direction = 1;
         }
+    }
 
-        if (game.input.keyboard.isDown(Phaser.Keyboard.Z)) {
-            if(regulateur_position > -90) {
+    if (game.input.keyboard.isDown(Phaser.Keyboard.Z)) {
+        if(regulateur_position > -90) {
             regulateur_position -= 45;
             regulateur_direction = -1;
-            }
         }
+    }
 
 
 
@@ -223,23 +222,19 @@ function update() {
 
     }
 
-
     if (regulateur_position <= 90 && regulateur_position >= -90) {
         if (regulateur.angle != regulateur_position) {
             regulateur.angle += regulateur_direction;
-         }
+        }
     }
 
     if (indicateur_gauche.angle != indicateur_gauche_position) {
-                indicateur_gauche.angle += indicateur_gauche_direction;
+        indicateur_gauche.angle += indicateur_gauche_direction;
     }
 
     if (indicateur_droit.angle != indicateur_droit_position) {
-            indicateur_droit.angle += indicateur_droit_direction;
+        indicateur_droit.angle += indicateur_droit_direction;
     }
-
-
-
 
 }
 
