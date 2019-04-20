@@ -88,7 +88,7 @@ function create() {
     indicateur_droit.lineStyle(2, 0xFFFF00, 1);
     indicateur_droit.drawRect(0, 0, 100, 16); 
     indicateur_droit.endFill();
-    indicateur_droit.pivot.x = 0;
+    indicateur_droit.pivot.x = 100;
     indicateur_droit.pivot.y = 8;
     indicateur_droit.angle = 0;
 
@@ -107,14 +107,15 @@ function create() {
     indicateurDroitPositionText = this.add.text(16, 80, 'indicateurDroitPosition: 0', { fontSize: '16px', fill: '#000' });
     indicateurDroitAngleText = this.add.text(16, 96, 'indicateurDroitAngle: 0', { fontSize: '16px', fill: '#000' });
 
-    regulateuraButton = this.add.button(16, 120, 'buttona', regulateuraOnClick, this, 2, 1, 0);
-    regulateurzButton = this.add.button(60, 120, 'buttonz', regulateurzOnClick, this, 2, 1, 0);
 
-    indicateurGaucheqButton = this.add.button(16, 170, 'buttonq', indicateurGaucheqOnClick, this, 2, 1, 0);
-    indicateurGauchesButton = this.add.button(60, 170, 'buttons', indicateurGauchesOnClick, this, 2, 1, 0);
+    regulateuraButton = this.add.button(16, 220, 'buttona', regulateuraOnClick, this, 2, 1, 0);
+    regulateurzButton = this.add.button(60, 220, 'buttonz', regulateurzOnClick, this, 2, 1, 0);
 
-    indicateurDroitwButton = this.add.button(16, 220, 'buttonw', indicateurDroitwOnClick, this, 2, 1, 0);
-    indicateurDroitxButton = this.add.button(60, 220, 'buttonx', indicateurDroitxOnClick, this, 2, 1, 0);
+    indicateurGaucheqButton = this.add.button(16, 270, 'buttonq', indicateurGaucheqOnClick, this, 2, 1, 0);
+    indicateurGauchesButton = this.add.button(60, 270, 'buttons', indicateurGauchesOnClick, this, 2, 1, 0);
+
+    indicateurDroitwButton = this.add.button(16, 320, 'buttonw', indicateurDroitwOnClick, this, 2, 1, 0);
+    indicateurDroitxButton = this.add.button(60, 320, 'buttonx', indicateurDroitxOnClick, this, 2, 1, 0);
 
 
 }
@@ -168,11 +169,11 @@ function update() {
 
 
     indicateurGauchePositionText.setText('indicateurGauchePosition: ' + indicateur_gauche_position);
-    indicateurGaucheAngleText.setText('indicateurGaucheAngle: ' + indicateur_gauche.angle);
+    indicateurGaucheAngleText.setText('indicateurGaucheAngle: ' + indicateur_gauche_angle);
 
 
     indicateurDroitPositionText.setText('indicateurDroitPosition: ' + indicateur_droit_position);
-    indicateurDroitAngleText.setText('indicateurDroitAngle: ' + indicateur_droit.angle);
+    indicateurDroitAngleText.setText('indicateurDroitAngle: ' + indicateur_droit_angle);
 
 
     /* Regulateur */
@@ -183,14 +184,18 @@ function update() {
     }
 
     /* Indicateur gauche */
-    if (indicateur_gauche.angle != indicateur_gauche_position) {
-        indicateur_gauche.angle = Math.floor(indicateur_gauche.angle);
+    if (indicateur_gauche_angle != indicateur_gauche_position) {
+    
+        indicateur_gauche_angle += indicateur_gauche_direction;
+
         indicateur_gauche.angle += indicateur_gauche_direction;
     }
 
     /* Indicateur droit */
-    if (indicateur_droit.angle != indicateur_droit_position) {
-        indicateur_droit.angle = Math.floor(indicateur_droit.angle)
+    if (indicateur_droit_angle != indicateur_droit_position) {
+
+        indicateur_droit_angle += indicateur_droit_direction;
+
         indicateur_droit.angle += indicateur_droit_direction;
     }
 
