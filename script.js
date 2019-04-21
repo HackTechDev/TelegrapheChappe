@@ -12,6 +12,12 @@ var phaser;
 
 function preload() {
     game.stage.backgroundColor = '#eee';
+    game.load.spritesheet('buttona', 'asset/buttona.png', 35, 35);
+    game.load.spritesheet('buttonz', 'asset/buttonz.png', 35, 35);
+    game.load.spritesheet('buttonq', 'asset/buttonq.png', 35, 35);
+    game.load.spritesheet('buttons', 'asset/buttons.png', 35, 35);
+    game.load.spritesheet('buttonw', 'asset/buttonw.png', 35, 35);
+    game.load.spritesheet('buttonx', 'asset/buttonx.png', 35, 35);
 
 }
 
