@@ -21,32 +21,32 @@ function preload() {
 
 }
 
-var regulateur;
-var regulateur_angle = 0;
-var regulateur_direction = 0;
-var regulateur_position = 0;
+var regulator;
+var regulatorAngle = 0;
+var regulatorDirection = 0;
+var regulatorPosition = 0;
 
 
 
-var indicateur_gauche;
-var indicateur_gauche_angle = 0;
-var indicateur_gauche_direction = 0;
-var indicateur_gauche_position = 0;
+var indicatorLeft;
+var indicatorLeftAngle = 0;
+var indicatorLeftDirection = 0;
+var indicatorLeftPosition = 0;
 
 
-var indicateur_droit;
-var indicateur_droit_angle = 0;
-var indicateur_droit_direction = 0;
-var indicateur_droit_position = 0;
+var indicatorRight;
+var indicatorRightAngle = 0;
+var indicatorRightDirection = 0;
+var indicatorRightPosition = 0;
 
-var regulateuraButton;
-var regulateurzButton;
+var regulatorAButton;
+var regulatorZButton;
 
-var indicateurGaucheqButton;
-var indicateurGauchesButton;
+var indicatorLeftQButton;
+var indicatorLeftSButton;
 
-var indicateurDroitwButton;
-var indicateurDroitxButtin;
+var indicatorRightWButton;
+var indicatorRightXButton;
 
 function create() {
 
@@ -69,140 +69,140 @@ function create() {
     mat.angle = 0;
 
 
-    regulateur = game.add.graphics(512, 384);
-    regulateur.beginFill(0x000, 1);
-    regulateur.lineStyle(2, 0x0000FF, 1);
-    regulateur.drawRect(0, 0, 230, 18); 
-    regulateur.endFill();
-    regulateur.pivot.x = 115;
-    regulateur.pivot.y = 9;
-    regulateur.angle = 0;
+    regulator = game.add.graphics(512, 384);
+    regulator.beginFill(0x000, 1);
+    regulator.lineStyle(2, 0x0000FF, 1);
+    regulator.drawRect(0, 0, 230, 18); 
+    regulator.endFill();
+    regulator.pivot.x = 115;
+    regulator.pivot.y = 9;
+    regulator.angle = 0;
 
 
-    indicateur_gauche = game.add.graphics(0, 8);
-    indicateur_gauche.beginFill(0x000, 1);
-    indicateur_gauche.lineStyle(2, 0xFF0000, 1);
-    indicateur_gauche.drawRect(0, 0, 100, 16); 
-    indicateur_gauche.endFill();
-    indicateur_gauche.pivot.x = 0;
-    indicateur_gauche.pivot.y = 8;
-    indicateur_gauche.angle = 0;
+    indicatorLeft = game.add.graphics(0, 8);
+    indicatorLeft.beginFill(0x000, 1);
+    indicatorLeft.lineStyle(2, 0xFF0000, 1);
+    indicatorLeft.drawRect(0, 0, 100, 16); 
+    indicatorLeft.endFill();
+    indicatorLeft.pivot.x = 0;
+    indicatorLeft.pivot.y = 8;
+    indicatorLeft.angle = 0;
 
 
-    indicateur_droit = game.add.graphics(230, 8);
-    indicateur_droit.beginFill(0x000, 1);
-    indicateur_droit.lineStyle(2, 0xFFFF00, 1);
-    indicateur_droit.drawRect(0, 0, 100, 16); 
-    indicateur_droit.endFill();
-    indicateur_droit.pivot.x = 100;
-    indicateur_droit.pivot.y = 8;
-    indicateur_droit.angle = 0;
+    indicatorRight = game.add.graphics(230, 8);
+    indicatorRight.beginFill(0x000, 1);
+    indicatorRight.lineStyle(2, 0xFFFF00, 1);
+    indicatorRight.drawRect(0, 0, 100, 16); 
+    indicatorRight.endFill();
+    indicatorRight.pivot.x = 100;
+    indicatorRight.pivot.y = 8;
+    indicatorRight.angle = 0;
 
 
-    regulateur.addChild(indicateur_gauche);
+    regulator.addChild(indicatorLeft);
 
-    regulateur.addChild(indicateur_droit);
-
-
-    regulateurPositionText = this.add.text(16, 16, 'regulateurPosition: 0', { fontSize: '16px', fill: '#000' });
-    regulateurAngleText = this.add.text(16, 32, 'regulateurAngle: 0', { fontSize: '16px', fill: '#000' });
-
-    indicateurGauchePositionText = this.add.text(16, 48, 'indicateurGauchePosition: 0', { fontSize: '16px', fill: '#000' });
-    indicateurGaucheAngleText = this.add.text(16, 64, 'indicateurGaucheAngle: 0', { fontSize: '16px', fill: '#000' });
-
-    indicateurDroitPositionText = this.add.text(16, 80, 'indicateurDroitPosition: 0', { fontSize: '16px', fill: '#000' });
-    indicateurDroitAngleText = this.add.text(16, 96, 'indicateurDroitAngle: 0', { fontSize: '16px', fill: '#000' });
+    regulator.addChild(indicatorRight);
 
 
-    regulateuraButton = this.add.button(16, 220, 'buttona', regulateuraOnClick, this, 2, 1, 0);
-    regulateurzButton = this.add.button(60, 220, 'buttonz', regulateurzOnClick, this, 2, 1, 0);
+    regulatorPositionText = this.add.text(16, 16, 'regulatorPosition: 0', { fontSize: '16px', fill: '#000' });
+    regulatorAngleText = this.add.text(16, 32, 'regulatorAngle: 0', { fontSize: '16px', fill: '#000' });
 
-    indicateurGaucheqButton = this.add.button(16, 270, 'buttonq', indicateurGaucheqOnClick, this, 2, 1, 0);
-    indicateurGauchesButton = this.add.button(60, 270, 'buttons', indicateurGauchesOnClick, this, 2, 1, 0);
+    indicatorLeftPositionText = this.add.text(16, 48, 'indicatorLeftPosition: 0', { fontSize: '16px', fill: '#000' });
+    indicatorLeftAngleText = this.add.text(16, 64, 'indicatorLeftAngle: 0', { fontSize: '16px', fill: '#000' });
 
-    indicateurDroitwButton = this.add.button(16, 320, 'buttonw', indicateurDroitwOnClick, this, 2, 1, 0);
-    indicateurDroitxButton = this.add.button(60, 320, 'buttonx', indicateurDroitxOnClick, this, 2, 1, 0);
+    indicatorRightPositionText = this.add.text(16, 80, 'indicatorRightPosition: 0', { fontSize: '16px', fill: '#000' });
+    indicatorRightAngleText = this.add.text(16, 96, 'indicatorRightAngle: 0', { fontSize: '16px', fill: '#000' });
+
+
+    regulatorAButton = this.add.button(16, 220, 'buttona', regulatorAOnClick, this, 2, 1, 0);
+    regulatorZButton = this.add.button(60, 220, 'buttonz', regulatorZOnClick, this, 2, 1, 0);
+
+    indicatorLeftQButton = this.add.button(16, 270, 'buttonq', indicatorLeftQOnClick, this, 2, 1, 0);
+    indicatorLeftSButton = this.add.button(60, 270, 'buttons', indicatorLeftSOnClick, this, 2, 1, 0);
+
+    indicatorRightWButton = this.add.button(16, 320, 'buttonw', indicatorRightWOnClick, this, 2, 1, 0);
+    indicatorRightXButton = this.add.button(60, 320, 'buttonx', indicatorRightXOnClick, this, 2, 1, 0);
 
 
 }
 
-function regulateuraOnClick() {
-    console.log('regulateurA click');
-    if(regulateur_position < 90) {
-        regulateur_position += 45;
-        regulateur_direction = 1;
+function regulatorAOnClick() {
+    console.log('regulatorA click');
+    if(regulatorPosition < 90) {
+        regulatorPosition += 45;
+        regulatorDirection = 1;
     }
 }
 
-function regulateurzOnClick() {
-    console.log('regulateurZ click');
-    if(regulateur_position > -90) {
-        regulateur_position -= 45;
-        regulateur_direction = -1;
+function regulatorZOnClick() {
+    console.log('regulatorZ click');
+    if(regulatorPosition > -90) {
+        regulatorPosition -= 45;
+        regulatorDirection = -1;
     }
 }
 
 
-function indicateurGaucheqOnClick() {
-    console.log('indicateur gauche Q click');
-    indicateur_gauche_position += 45;
-    indicateur_gauche_direction = 1;
+function indicatorLeftQOnClick() {
+    console.log('indicator left Q click');
+    indicatorLeftPosition += 45;
+    indicatorLeftDirection = 1;
 }
 
-function indicateurGauchesOnClick() {
-    console.log('indicateur gauche S click');
-    indicateur_gauche_position -= 45;
-    indicateur_gauche_direction = -1;
+function indicatorLeftSOnClick() {
+    console.log('indicator left S click');
+    indicatorLeftPosition -= 45;
+    indicatorLeftDirection = -1;
 }
 
 
-function indicateurDroitwOnClick() {
-    console.log('indicateur droit W click');
-    indicateur_droit_position += 45;
-    indicateur_droit_direction = 1;
+function indicatorRightWOnClick() {
+    console.log('indicator right W click');
+    indicatorRightPosition += 45;
+    indicatorRightDirection = 1;
 }
 
-function indicateurDroitxOnClick() {
-    console.log('indicateur droit X click');
-    indicateur_droit_position -= 45;
-    indicateur_droit_direction = -1;
+function indicatorRightXOnClick() {
+    console.log('indicator right X click');
+    indicatorRightPosition -= 45;
+    indicatorRightDirection = -1;
 }
 
 
 function update() {
-    regulateurPositionText.setText('regulateurPosition: ' + regulateur_position);
-    regulateurAngleText.setText('regulateurAngle: ' + regulateur.angle);
+    regulatorPositionText.setText('regulatorPosition: ' + regulatorPosition);
+    regulatorAngleText.setText('regulatorAngle: ' + regulator.angle);
 
 
-    indicateurGauchePositionText.setText('indicateurGauchePosition: ' + indicateur_gauche_position);
-    indicateurGaucheAngleText.setText('indicateurGaucheAngle: ' + indicateur_gauche_angle);
+    indicatorLeftPositionText.setText('indicatorLeftPosition: ' + indicatorLeftPosition);
+    indicatorLeftAngleText.setText('indicatorLeftAngle: ' + indicatorLeftAngle);
 
 
-    indicateurDroitPositionText.setText('indicateurDroitPosition: ' + indicateur_droit_position);
-    indicateurDroitAngleText.setText('indicateurDroitAngle: ' + indicateur_droit_angle);
+    indicatorRightPositionText.setText('indicatorRightPosition: ' + indicatorRightPosition);
+    indicatorRightAngleText.setText('indicatorRightAngle: ' + indicatorRightAngle);
 
 
-    /* Regulateur */
-    if (regulateur_position <= 90 && regulateur_position >= -90) {
-        if (regulateur.angle != regulateur_position) {
-            regulateur.angle += regulateur_direction;
+    /* Regulator */
+    if (regulatorPosition <= 90 && regulatorPosition >= -90) {
+        if (regulator.angle != regulatorPosition) {
+            regulator.angle += regulatorDirection;
         }
     }
 
-    /* Indicateur gauche */
-    if (indicateur_gauche_angle != indicateur_gauche_position) {
+    /* Indicator left */
+    if (indicatorLeftAngle != indicatorLeftPosition) {
     
-        indicateur_gauche_angle += indicateur_gauche_direction;
+        indicatorLeftAngle += indicatorLeftDirection;
 
-        indicateur_gauche.angle += indicateur_gauche_direction;
+        indicatorLeft.angle += indicatorLeftDirection;
     }
 
-    /* Indicateur droit */
-    if (indicateur_droit_angle != indicateur_droit_position) {
+    /* Indicator droit */
+    if (indicatorRightAngle != indicatorRightPosition) {
 
-        indicateur_droit_angle += indicateur_droit_direction;
+        indicatorRightAngle += indicatorRightDirection;
 
-        indicateur_droit.angle += indicateur_droit_direction;
+        indicatorRight.angle += indicatorRightDirection;
     }
 
 }
